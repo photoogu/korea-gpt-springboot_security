@@ -19,4 +19,8 @@ public class RedisTokenService {
     public void setAccess(String username, String token, Duration duration) {
         redisTemplate.opsForValue().set("access:" + username, token, duration);
     }
+
+    public String getRefreshToken(String username) {
+        return (String) redisTemplate.opsForValue().get("refresh:" + username);
+    }
 }
